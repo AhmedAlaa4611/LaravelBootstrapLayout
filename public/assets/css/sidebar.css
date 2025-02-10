@@ -1,0 +1,9 @@
+aside {
+    transition-duration: 0.3s;
+}
+
+.hide {
+    width: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
