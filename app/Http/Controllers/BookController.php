@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Requests\Book\UpdateBookRequest;
 use App\Models\Book;
+use App\Models\Category;
 use App\Traits\Imageable;
 
 class BookController extends Controller
@@ -34,7 +35,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $categories = Category::all();
+
+        return view('books.create', compact('categories'));
     }
 
     /**
@@ -64,7 +67,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('books.update', compact('book'));
+        $categories = Category::all();
+
+        return view('books.update', compact('book', 'categories'));
     }
 
     /**

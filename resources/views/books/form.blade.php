@@ -7,6 +7,8 @@
 
     <x-forms.input type="file" name="image">Book image</x-forms.input>
 
+    <x-forms.dropdown name="category_id" :collection="$categories" type="radio" select="{{ $book->category->id ?? null }}">Category</x-forms.dropdown>
+
     @isset($book)
         <div class="mt-5" style="width: 18rem;">
             <img src="{{ asset($book->image) }}" class="card-img-top" alt="Book Image: {{ $book->title }}">

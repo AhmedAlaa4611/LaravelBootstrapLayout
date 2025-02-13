@@ -7,6 +7,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ $book->price }}$</h5>
             <p class="card-text">{{ $book->description }}</p>
+            <p class="card-text">Category: {{ $book->category->title }}</p>
             <a href="#" class="btn btn-primary">Add to card</a>
         </div>
     </div>

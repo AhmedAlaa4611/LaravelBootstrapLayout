@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Book;
 
+use App\Http\Requests\Base\CategoryIdRules;
 use App\Http\Requests\Base\DescriptionRules;
 use App\Http\Requests\Base\ImageRules;
 use App\Http\Requests\Base\PriceRules;
@@ -10,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateBookRequest extends FormRequest
 {
-    use DescriptionRules, ImageRules, PriceRules, TitleRules;
+    use DescriptionRules, ImageRules, PriceRules, TitleRules, CategoryIdRules;
 
     /**
      * Get the validation rules that apply to the request.
@@ -22,6 +23,7 @@ class UpdateBookRequest extends FormRequest
             $this->priceRules(),
             $this->descriptionRules(),
             $this->imageRules(false),
+            $this->categoryIdRules(),
         );
     }
 }
