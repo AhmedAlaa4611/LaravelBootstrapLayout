@@ -5,6 +5,7 @@
     <hr class="my-2">
     <ul class="nav nav-pills flex-column mb-auto">
         <x-sidebar-link href="/" :current-page="request()->is('/')">Home</x-sidebar-link>
+        <x-sidebar-link href="/categories" :current-page="request()->is('categories')">Categories</x-sidebar-link>
         <x-sidebar-link href="/books" :current-page="request()->is('books')">Books</x-sidebar-link>
     </ul>
     <hr class="my-2">
