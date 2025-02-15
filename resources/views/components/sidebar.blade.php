@@ -37,8 +37,8 @@
 
     @guest
         <div class="text-center">
-            <x-buttons.primary url="/register/create">Register</x-buttons.primary>
-            <x-buttons.primary url="/login/create">Login</x-buttons.primary>
+            <x-buttons.primary :url="route('register.create')">Register</x-buttons.primary>
+            <x-buttons.primary :url="route('login.create')">Login</x-buttons.primary>
         </div>
     @endguest
 </aside>
