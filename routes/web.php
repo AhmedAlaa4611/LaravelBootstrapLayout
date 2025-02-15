@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,4 +29,18 @@ Route::controller(BookController::class)->group(function () {
     Route::get('/books/{book}/edit', 'edit')->name('books.edit');
     Route::put('/books/{book}', 'update')->name('books.update');
     Route::delete('/books/{book}', 'destroy')->name('books.destroy');
+});
+
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register/create', 'create')->name('register.create');
+    Route::post('/register', 'store')->name('register.store');
+});
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login/create', 'create')->name('login.create');
+    Route::post('/login', 'store')->name('login.store');
+});
+
+Route::controller(AuthController::class)->group(function () {
+    Route::delete('/logout', 'destroy')->name('logout');
 });

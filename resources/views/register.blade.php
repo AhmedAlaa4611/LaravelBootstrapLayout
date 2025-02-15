@@ -8,13 +8,13 @@
 
         <x-forms.input type="password" name="password">Password</x-forms.input>
 
-        <x-forms.input type="password" name="password_confirmation">Password Confirmation</x-forms.input>
+        {{-- <x-forms.input type="password" name="password_confirmation">Password Confirmation</x-forms.input> --}}
 
-        <div class="col-12">
+        {{-- <div class="col-12">
             <x-forms.check type="radio" name="gender" value="male">Male</x-forms.check>
             <x-forms.check type="radio" name="gender" value="female">Female</x-forms.check>
             <x-forms.error name="gender" />
-        </div>
+        </div> --}}
 
         <x-forms.submit>Register</x-forms.submit>
     </x-forms>

@@ -1,7 +1,7 @@
 @props([
     'name',
     'value',
-    'select',
+    'select' => null,
 ])
 
 <div class="form-check">
