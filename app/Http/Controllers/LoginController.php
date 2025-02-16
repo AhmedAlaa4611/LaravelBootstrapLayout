@@ -30,8 +30,8 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Does not match our records.',
-            'password' => 'Does not match our records.',
+            'email' => 'These credentials do not match our records.',
+            'password' => 'These credentials do not match our records.',
         ])->withInput('email');
     }
 }

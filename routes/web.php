@@ -32,12 +32,12 @@ Route::controller(BookController::class)->group(function () {
 });
 
 Route::controller(RegisterController::class)->group(function () {
-    Route::get('/register/create', 'create')->name('register.create');
+    Route::get('/register', 'create')->name('register.create');
     Route::post('/register', 'store')->name('register.store');
 });
 
 Route::controller(LoginController::class)->group(function () {
-    Route::get('/login/create', 'create')->name('login.create');
+    Route::get('/login', 'create')->name('login.create');
     Route::post('/login', 'store')->name('login.store');
 });
 
