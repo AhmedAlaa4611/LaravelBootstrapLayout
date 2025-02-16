@@ -8,7 +8,7 @@
 
         <x-forms.input type="password" name="password">Password</x-forms.input>
 
-        {{-- <x-forms.input type="password" name="password_confirmation">Password Confirmation</x-forms.input> --}}
+        <x-forms.input type="password" name="password_confirmation">Password Confirmation</x-forms.input>
 
         {{-- <div class="col-12">
             <x-forms.check type="radio" name="gender" value="male">Male</x-forms.check>
