@@ -26,13 +26,13 @@ class LoginController extends Controller
             'password' => ['required', 'max:255'],
         ]);
 
-        if (Auth::attempt($data)) {
+        if (Auth::attempt($data, $request->has('remember'))) {
             return redirect('/');
         }
 
         return back()->withErrors([
             'email' => 'These credentials do not match our records.',
             'password' => 'These credentials do not match our records.',
-        ])->withInput('email');
+        ])->withInput($request->except('password'));
     }
 }
