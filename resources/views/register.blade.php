@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:heading>Register</x-slot:heading>
 
-    <x-forms action="/register">
+    <x-forms :action="route('register.create')">
         <x-forms.input type="text" name="name">Name</x-forms.input>
 
         <x-forms.input type="email" name="email">Email</x-forms.input>

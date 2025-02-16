@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:heading>Login</x-slot:heading>
 
-    <x-forms action="/login">
+    <x-forms :action="route('login.create')">
         <x-forms.input type="email" name="email">Email</x-forms.input>
 
         <x-forms.input type="password" name="password">Password</x-forms.input>
