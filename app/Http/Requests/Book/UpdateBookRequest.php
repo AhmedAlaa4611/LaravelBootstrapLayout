@@ -11,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateBookRequest extends FormRequest
 {
-    use DescriptionRules, ImageRules, PriceRules, TitleRules, CategoryIdRules;
+    use CategoryIdRules, DescriptionRules, ImageRules, PriceRules, TitleRules;
 
     /**
      * Get the validation rules that apply to the request.

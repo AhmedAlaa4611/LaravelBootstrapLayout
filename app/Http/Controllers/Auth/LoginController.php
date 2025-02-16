@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RegisterController extends Controller
+class LoginController extends Controller
 {
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('register');
+        return view('login');
     }
 
     /**
@@ -22,15 +22,17 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'password' => ['required', 'max:255'],
         ]);
 
-        $user = User::create($data);
+        if (Auth::attempt($data)) {
+            return redirect('/');
+        }
 
-        Auth::login($user);
-
-        return redirect('/');
+        return back()->withErrors([
+            'email' => 'These credentials do not match our records.',
+            'password' => 'These credentials do not match our records.',
+        ])->withInput('email');
     }
 }
