@@ -7,11 +7,13 @@
     </button>
     <div class="dropdown-menu px-2" style="width: 95%">
         <ul class="list-group">
-            @foreach ($collection as $item)
+            @forelse ($collection as $item)
                 <li class="list-group-item list-group-item-action">
                     <x-forms.check type="{{ $type }}" name="{{ $name }}" value="{{ $item->id }}" :select="$select == $item->id">{{ $item->title }}</x-forms.check>
                 </li>
-            @endforeach
+            @empty
+                <p class="mb-0 text-success">This is empty up until now.</p>
+            @endforelse
         </ul>
     </div>
     <x-forms.error :name="$name" />
