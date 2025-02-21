@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -14,7 +15,9 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        return view('register');
+        $roles = ['author', 'student'];
+
+        return view('register', compact('roles'));
     }
 
     /**
@@ -24,9 +27,10 @@ class RegisterController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'max:255', 'confirmed'],
-            'password_confirmation' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'min:6', 'max:255', 'confirmed'],
+            'password_confirmation' => ['required', 'min:6', 'max:255'],
+            'role' => ['required', Rule::in(['author', 'student'])],
         ]);
 
         $user = User::create($data);

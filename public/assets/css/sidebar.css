@@ -7,3 +7,7 @@ aside {
     padding: 0 !important;
     overflow: hidden;
 }
+
+.invalid-feedback {
+    display: block;
+}

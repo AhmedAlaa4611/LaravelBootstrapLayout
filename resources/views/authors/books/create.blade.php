@@ -1,5 +1,5 @@
 <x-layout>
     <x-slot:heading>Create a new Book</x-slot:heading>
 
-    @include('books.form')
+    @include('authors.books.form')
 </x-layout>

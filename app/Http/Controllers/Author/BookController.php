@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Author;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Requests\Book\UpdateBookRequest;
 use App\Models\Book;
 use App\Models\Category;
 use App\Traits\Imageable;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -17,7 +19,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        $books = Auth::user()
+            ->books()
+            ->get();
 
         $display = [
             'id',
@@ -27,7 +31,7 @@ class BookController extends Controller
             'created_at',
         ];
 
-        return view('books.index', compact('books', 'display'));
+        return view('authors.books.index', compact('books', 'display'));
     }
 
     /**
@@ -35,9 +39,11 @@ class BookController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Auth::user()
+            ->categories()
+            ->get();
 
-        return view('books.create', compact('categories'));
+        return view('authors.books.create', compact('categories'));
     }
 
     /**
@@ -59,7 +65,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('books.show', compact('book'));
+        return view('authors.books.show', compact('book'));
     }
 
     /**
@@ -69,7 +75,7 @@ class BookController extends Controller
     {
         $categories = Category::all();
 
-        return view('books.update', compact('book', 'categories'));
+        return view('authors.books.update', compact('book', 'categories'));
     }
 
     /**

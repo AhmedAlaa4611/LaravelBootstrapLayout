@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Author;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Auth::user()
+            ->categories()
+            ->get();
 
         $display = [
             'id',
@@ -21,7 +25,7 @@ class CategoryController extends Controller
             'created_at',
         ];
 
-        return view('categories.index', compact('categories', 'display'));
+        return view('authors.categories.index', compact('categories', 'display'));
     }
 
     /**
@@ -29,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('authors.categories.create');
     }
 
     /**
@@ -39,7 +43,9 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        $category = Category::create($data);
+        $category = Auth::user()
+            ->categories()
+            ->create($data);
 
         return to_route('categories.show', $category);
     }
@@ -49,7 +55,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('categories.show', compact('category'));
+        return view('authors.categories.show', compact('category'));
     }
 
     /**
@@ -57,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.update', compact('category'));
+        return view('authors.categories.update', compact('category'));
     }
 
     /**

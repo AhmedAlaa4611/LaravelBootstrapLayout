@@ -6,8 +6,14 @@
     <ul class="nav nav-pills flex-column mb-auto">
         <x-sidebar-link href="/" :current-page="request()->is('/')">Home</x-sidebar-link>
         @auth
-            <x-sidebar-link href="/categories" :current-page="request()->is('categories')">Categories</x-sidebar-link>
-            <x-sidebar-link href="/books" :current-page="request()->is('books')">Books</x-sidebar-link>
+            @if (Auth::user()->role == 'author')
+                <x-sidebar-link href="/categories" :current-page="request()->is('categories')">Categories</x-sidebar-link>
+                <x-sidebar-link href="/books" :current-page="request()->is('books')">Books</x-sidebar-link>
+            @endif
+            @if (Auth::user()->role == 'student')
+                <x-sidebar-link href="/students/categories" :current-page="request()->is('students/categories')">Categories</x-sidebar-link>
+                <x-sidebar-link href="/students/books" :current-page="request()->is('students/books')">Books</x-sidebar-link>
+            @endif
         @endauth
     </ul>
     <hr class="my-2">
@@ -20,7 +26,7 @@
     @auth
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <img src="https://github.com/mdo.png" alt="{{ Auth::user()->name }}" width="32" height="32" class="rounded-circle me-2">
                 <strong>{{ Auth::user()->name }}</strong>
             </a>
             <ul class="dropdown-menu text-small shadow">

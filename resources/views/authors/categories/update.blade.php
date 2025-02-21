@@ -1,5 +1,5 @@
 <x-layout>
     <x-slot:heading>Update the Category</x-slot:heading>
 
-    @include('categories.form')
+    @include('authors.categories.form')
 </x-layout>

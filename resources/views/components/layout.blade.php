@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}">
     </head>
     <body class="d-flex vh-100">
-        @include('components.sidebar')
+        @auth
+            @include('components.sidebar')
+        @endauth
 
         <div class="d-flex flex-column flex-grow-1 overflow-y-auto">
             @include('components.nav')
