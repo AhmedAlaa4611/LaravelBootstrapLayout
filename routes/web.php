@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Middleware\AuthorRole;
-use App\Http\Middleware\StudentRole;
+use App\Http\Middleware\EnsureUserIsAuthor;
+use App\Http\Middleware\EnsureUserIsStudent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,7 +24,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::middleware(AuthorRole::class)->group(function () {
+    Route::middleware(EnsureUserIsAuthor::class)->group(function () {
 
         Route::controller(App\Http\Controllers\Author\CategoryController::class)->group(function () {
             Route::get('/categories/create', 'create')->name('categories.create');
@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
     });
 
-    Route::middleware(StudentRole::class)->group(function () {
+    Route::middleware(EnsureUserIsStudent::class)->group(function () {
 
         Route::controller(App\Http\Controllers\Student\CategoryController::class)->group(function () {
             Route::get('/students/categories', 'index');
